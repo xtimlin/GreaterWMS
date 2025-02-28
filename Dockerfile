@@ -6,12 +6,10 @@ ENV PYTHONDONTWRITEBYTECODE 1
 ENV PYTHONUNBUFFERED 1
 
 # Create working directory
-RUN mkdir -p /GreaterWMS/templates
 WORKDIR /GreaterWMS
 
-# Copy requirements and scripts
-COPY ./requirements.txt /GreaterWMS/requirements.txt
-COPY ./backend_start.sh /GreaterWMS/backend_start.sh
+# Copy the entire project (including manage.py)
+COPY . .
 
 # Install system dependencies
 RUN apt-get update --fix-missing && apt-get upgrade -y && \
@@ -27,7 +25,7 @@ RUN python3 -m pip install --upgrade pip && \
 RUN chmod +x /GreaterWMS/backend_start.sh
 
 # Expose the port
-EXPOSE 8008
+EXPOSE 8000
 
 # Run the application
 CMD ["/GreaterWMS/backend_start.sh"]
