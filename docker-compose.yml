@@ -32,7 +32,7 @@ services:
       - ./:/GreaterWMS/:rw
       - ./supervisord.conf:/etc/supervisor/supervisord.conf
     ports:
-      - '8000:8000'  # Changed to 8000 (standard Django port)
+      - '8000:8000'  # Standard Django port
     environment:
       PYTHONUNBUFFERED: 1
     networks:
